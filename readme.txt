@@ -1,11 +1,19 @@
 === GTM Snippet Inserter ===
 Contributors: Osamu Takahashi
-Stable tag: 1.0.0
+Tags: google, tag manager
+Requires at least: 5.9.3
 Tested up to: 5.9.3
-Requires at least: 5.9
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-このプラグインは、サイト内にGTMのスニペットを挿入します。
+This plugin inserts GTM snippets into the site.
 
 == Description ==
 
-このプラグインは、サイト内にGTMのスニペットを挿入します。
+This plugin inserts GTM snippets into the site.
+
+== Changelog ==
+
+= 1.0.0 =
+* First release
