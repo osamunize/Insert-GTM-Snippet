@@ -12,53 +12,55 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-/* 管理画面にオリジナルメニューを追加する */
-add_action( 'admin_menu', 'register_my_custom_menu_page' );
-function register_my_custom_menu_page(){
-    add_menu_page( 'GTM Snippet Inserter', 'GTM Snippet Inserter',
-    'manage_options', 'custompage', 'mt_settings_page', ''); 
-}
-
-function mt_settings_page() {
+// メニューを追加
+    add_action( 'admin_menu', 'register_my_custom_menu_page' );
+    function register_my_custom_menu_page(){
+        add_menu_page( 'GTM Snippet Inserter', 'GTM Snippet Inserter','manage_options', 'custompage', 'mt_settings_page', ''); 
+    }
+    function mt_settings_page() {
 
 // ユーザーが必要な権限を持つか確認
-if (!current_user_can('manage_options'))
-{
-wp_die( __('You do not have sufficient permissions to access this page.') );
-}
+    if (!current_user_can('manage_options'))
+    {
+        wp_die( __('You do not have sufficient permissions to access this page.') );
+    }
+
 // フィールドとオプション名の変数
-$opt_name = 'gtm_snippet';
-$hidden_field_name = 'mt_submit_hidden';
-$data_field_name = 'gtm_snippet';
-// データベースから既存のオプション値を取得
-$opt_val = get_option( $opt_name );
+    $opt_name = 'gtm_snippet';
+    $hidden_field_name = 'mt_submit_hidden';
+    $data_field_name = 'gtm_snippet';
+
+// DBから既存のオプション値を取得
+    $opt_val = get_option( $opt_name );
+
 // ユーザーが何か情報を POST したかどうかを確認
 // POST していれば、隠しフィールドに 'Y' が設定されている
-if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
-    // POST されたデータを取得
-    $opt_val = $_POST[ $data_field_name ];
-    // POST された値をデータベースに保存
-    update_option( $opt_name, $opt_val );
-    // 画面に「設定は保存されました」メッセージを表示
-?>
-<div class="updated"><p><strong><?php _e('Settings Saved.', 'gtm_snippet_menu' ); ?></strong></p></div>
-<?php
-}
+    if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+        // POST されたデータを取得
+        $opt_val = $_POST[ $data_field_name ];
+        // POST された値をDBに保存
+        update_option( $opt_name, $opt_val );
+        // 画面に「Setting Saves」メッセージを表示
+        ?>
+        <div class="updated"><p><strong><?php _e('Settings Saved.', 'gtm_snippet_menu' ); ?></strong></p></div>
+        <?php
+    }
 
-echo '<div class="wrap">';
-echo "<h2>" . __( 'GTM Snippet Inserter', 'gtm_snippet_menu' ) . "</h2>";
-?>
-<form name="form1" method="post" action="">
-<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
-<p><?php _e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
-<input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" size="20">
-<p class="submit">
-<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
-</p>
-</form>
-</div>
-<?php
-}
+    echo '<div class="wrap">';
+    echo "<h2>" . __( 'GTM Snippet Inserter', 'gtm_snippet_menu' ) . "</h2>";
+    ?>
+    <form name="form1" method="post" action="">
+    <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+    <p><?php _e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
+    <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" size="20">
+    <p>If the value is empty or does not exist, no snippet is output.</p>
+    <p class="submit">
+    <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+    </p>
+    </form>
+    </div>
+    <?php
+    }
 
 function gtm_inserter_head(){
     $opt_val = get_option( 'gtm_snippet' );
