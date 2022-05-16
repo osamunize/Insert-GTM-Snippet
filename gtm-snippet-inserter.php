@@ -2,7 +2,7 @@
 /**
  * Plugin Name: GTM Snippet Inserter
  * Description: This plugin inserts GTM snippets into the site.
- * Version: 1.0.0
+ * Version: 0.1.0
  * Author: Osamu Takahashi
  * Author URI: https://github.com/osamunize/GTM-Snippet-Inserter
  * License: GPL2 or later
