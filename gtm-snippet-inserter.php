@@ -2,9 +2,9 @@
 /**
  * Plugin Name: GTM Snippet Inserter
  * Description: This plugin inserts GTM snippets into the site.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Author: Osamu Takahashi
- * Author URI: https://github.com/osamunize/GTM-Snippet-Inserter
+ * Author URI: https://profiles.wordpress.org/osamunize/
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: gtm-snippet-inserter
@@ -64,7 +64,7 @@ defined( 'ABSPATH' ) || exit;
 
 function gtm_inserter_head(){
     $opt_val = get_option( 'gtm_snippet' );
-    if ($opt_val == !null){
+    if ( !null == $opt_val ){
         echo "
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -79,7 +79,7 @@ function gtm_inserter_head(){
 
 function gtm_inserter_body(){
     $opt_val = get_option( 'gtm_snippet' );
-    if ($opt_val == !null){
+    if ( !null == $opt_val ){
         echo '
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$opt_val.'"
