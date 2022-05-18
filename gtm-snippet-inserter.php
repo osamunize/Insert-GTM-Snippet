@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 // メニューを追加
     add_action( 'admin_menu', 'register_insert_gtm_snippet_menu_page' );
     function register_insert_gtm_snippet_menu_page(){
-        add_menu_page( 'Insert GTM Snippet', 'Insert GTM Snippet','manage_options', 'custompage', 'mt_insert_gtm_snippet_settings_page', ''); 
+        add_menu_page( 'Insert GTM Snippet', 'Insert GTM Snippet','manage_options', 'insert_gtm_snippet', 'mt_insert_gtm_snippet_settings_page', ''); 
     }
     function mt_insert_gtm_snippet_settings_page() {
 
