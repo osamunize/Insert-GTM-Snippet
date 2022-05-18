@@ -13,11 +13,11 @@
 defined( 'ABSPATH' ) || exit;
 
 // メニューを追加
-    add_action( 'admin_menu', 'register_my_custom_menu_page' );
-    function register_my_custom_menu_page(){
-        add_menu_page( 'Insert GTM Snippet', 'Insert GTM Snippet','manage_options', 'custompage', 'mt_settings_page', ''); 
+    add_action( 'admin_menu', 'register_insert_gtm_snippet_menu_page' );
+    function register_insert_gtm_snippet_menu_page(){
+        add_menu_page( 'Insert GTM Snippet', 'Insert GTM Snippet','manage_options', 'custompage', 'mt_insert_gtm_snippet_settings_page', ''); 
     }
-    function mt_settings_page() {
+    function mt_insert_gtm_snippet_settings_page() {
 
 // ユーザーが必要な権限を持つか確認
     if (!current_user_can('manage_options'))
