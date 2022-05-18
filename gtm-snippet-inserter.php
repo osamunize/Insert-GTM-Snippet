@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: GTM Snippet Inserter
+ * Plugin Name: Insert GTM Snippet
  * Description: This plugin inserts GTM snippets into the site.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Author: Osamu Takahashi
- * Author URI: https://github.com/osamunize/GTM-Snippet-Inserter
+ * Author URI: https://profiles.wordpress.org/osamunize/
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: gtm-snippet-inserter
+ * Text Domain: insert-gtm-snippet
  * Domain Path: /languages
  */
 defined( 'ABSPATH' ) || exit;
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 // メニューを追加
     add_action( 'admin_menu', 'register_my_custom_menu_page' );
     function register_my_custom_menu_page(){
-        add_menu_page( 'GTM Snippet Inserter', 'GTM Snippet Inserter','manage_options', 'custompage', 'mt_settings_page', ''); 
+        add_menu_page( 'Insert GTM Snippet', 'Insert GTM Snippet','manage_options', 'custompage', 'mt_settings_page', ''); 
     }
     function mt_settings_page() {
 
@@ -47,7 +47,7 @@ defined( 'ABSPATH' ) || exit;
     }
 
     echo '<div class="wrap">';
-    echo "<h2>" . __( 'GTM Snippet Inserter', 'gtm_snippet_menu' ) . "</h2>";
+    echo "<h2>" . __( 'Insert GTM Snippet', 'gtm_snippet_menu' ) . "</h2>";
     ?>
     <form name="form1" method="post" action="">
     <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
@@ -64,7 +64,7 @@ defined( 'ABSPATH' ) || exit;
 
 function gtm_inserter_head(){
     $opt_val = get_option( 'gtm_snippet' );
-    if ($opt_val == !null){
+    if ( !null == $opt_val ){
         echo "
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -79,7 +79,7 @@ function gtm_inserter_head(){
 
 function gtm_inserter_body(){
     $opt_val = get_option( 'gtm_snippet' );
-    if ($opt_val == !null){
+    if ( !null == $opt_val ){
         echo '
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$opt_val.'"

@@ -1,9 +1,10 @@
-=== GTM Snippet Inserter ===
-Contributors: Osamu Takahashi
-Tags: google, tag manager
+=== Insert GTM Snippet ===
+Contributors: osamunize
+Tags: snippet, google, tag manager , gtm
 Requires at least: 5.9.3
 Tested up to: 5.9.3
-Stable tag: 0.1.0
+Stable tag: 1.0.0
+Requires PHP: 7.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,5 +16,17 @@ This plugin inserts GTM snippets into the site.
 
 == Changelog ==
 
+= 1.0.0 =
+* Official Release
+
 = 0.1.0 =
-* First release
+* Internal Release
+
+== Frequently Asked Questions ==
+= Where do I get a GTM Container ID? =
+Create an account and container in Google Tag Manager and get it there.
+
+== Installating ==
+1.Insert GTM Snippet can be installed directly through your WordPress Plugins dashboard.
+2.Click “Add New” and Search for “Insert GTM Snippet”
+3.Install and Activate
