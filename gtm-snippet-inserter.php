@@ -38,21 +38,28 @@ defined( 'ABSPATH' ) || exit;
     if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
         // POST されたデータを取得
         $opt_val = $_POST[ $data_field_name ];
-        // POST された値をDBに保存
-        update_option( $opt_name, $opt_val );
-        // 画面に「Setting Saves」メッセージを表示
+        // 入力された値が不正の場合
+        if ( $opt_val !== esc_html($opt_val) || !preg_match('/GTM-[0-9A-Z]{7}$/',$opt_val) ){
         ?>
-        <div class="updated"><p><strong><?php _e('Settings Saved.', 'gtm_snippet_menu' ); ?></strong></p></div>
-        <?php
+            <div class="error"><p><strong><?php esc_html_e('Invalid Data.', 'gtm_snippet_menu' ); ?></strong></p></div>
+            <?php
+        }else{
+            // POST された値をDBに保存
+            update_option( $opt_name, $opt_val );
+            // 画面に「Setting Saves」メッセージを表示
+            ?>
+            <div class="updated"><p><strong><?php esc_html_e('Settings Saved.', 'gtm_snippet_menu' ); ?></strong></p></div>
+            <?php
+        }
     }
 
     echo '<div class="wrap">';
     echo "<h2>" . __( 'Insert GTM Snippet', 'gtm_snippet_menu' ) . "</h2>";
     ?>
     <form name="form1" method="post" action="">
-    <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
-    <p><?php _e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
-    <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" size="20">
+    <input type="hidden" name="<?php echo esc_html($hidden_field_name); ?>" value="Y">
+    <p><?php esc_html_e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
+    <input type="text" name="<?php echo esc_html($data_field_name); ?>" value="<?php echo esc_html($opt_val); ?>" size="20">
     <p>If the value is empty or does not exist, no snippet is output.</p>
     <p class="submit">
     <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
@@ -71,7 +78,7 @@ function gtm_inserter_head(){
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','".$opt_val."');</script>
+        })(window,document,'script','dataLayer','".esc_html($opt_val)."');</script>
         <!-- End Google Tag Manager -->
         "."\n";}
     }
@@ -82,7 +89,7 @@ function gtm_inserter_body(){
     if ( !null == $opt_val ){
         echo '
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$opt_val.'"
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.esc_html($opt_val).'"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->	
         '."\n";}
