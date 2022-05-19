@@ -62,6 +62,7 @@ defined( 'ABSPATH' ) || exit;
         <p><?php esc_attr_e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
         <input type="text" name="<?php echo esc_attr($data_field_name); ?>" value="<?php echo esc_attr($opt_val); ?>" size="20">
         <p>If the value is empty or does not exist, no snippet is output.</p>
+        <p>Only uppercase alphanumeric characters and hyphens may be entered. Please be careful not to include spaces.</p>
         <p class="submit">
         <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
         </p>
