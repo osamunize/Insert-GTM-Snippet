@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
         // POST されたデータを取得
         $opt_val = esc_attr($_POST[ $data_field_name ]);
         // 入力された値が不正の場合
-        if ( $opt_val !== esc_attr($opt_val) || !preg_match('/GTM-[0-9A-Z]{7}$/',$opt_val) ){
+        if ( !preg_match('/GTM-[0-9A-Z]{7}$/',$opt_val) ){
         ?>
             <div class="error"><p><strong><?php esc_attr_e('Invalid Data.', 'gtm_snippet_menu' ); ?></strong></p></div>
             <?php
