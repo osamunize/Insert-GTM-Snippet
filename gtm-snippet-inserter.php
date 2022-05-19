@@ -35,7 +35,8 @@ defined( 'ABSPATH' ) || exit;
 
 // ユーザーが何か情報を POST したかどうかを確認
 // POST していれば、隠しフィールドに 'Y' が設定されている
-    if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+    //if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+    if ( ! empty( $_POST ) && check_admin_referer( 'insert_gtm_snippet_action','insert_gtm_snippet_nonce_field' ) ) {
         // POST されたデータを取得
         $opt_val = esc_attr($_POST[ $data_field_name ]);
         // 入力された値が不正の場合
@@ -57,13 +58,14 @@ defined( 'ABSPATH' ) || exit;
     echo "<h2>" . __( 'Insert GTM Snippet', 'gtm_snippet_menu' ) . "</h2>";
     ?>
     <form name="form1" method="post" action="">
-    <input type="hidden" name="<?php echo esc_attr($hidden_field_name); ?>" value="Y">
-    <p><?php esc_attr_e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
-    <input type="text" name="<?php echo esc_attr($data_field_name); ?>" value="<?php echo esc_attr($opt_val); ?>" size="20">
-    <p>If the value is empty or does not exist, no snippet is output.</p>
-    <p class="submit">
-    <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
-    </p>
+        <?php wp_nonce_field( 'insert_gtm_snippet_action', 'insert_gtm_snippet_nonce_field' ); ?>
+        <input type="hidden" name="<?php echo esc_attr($hidden_field_name); ?>" value="Y">
+        <p><?php esc_attr_e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
+        <input type="text" name="<?php echo esc_attr($data_field_name); ?>" value="<?php echo esc_attr($opt_val); ?>" size="20">
+        <p>If the value is empty or does not exist, no snippet is output.</p>
+        <p class="submit">
+        <input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+        </p>
     </form>
     </div>
     <?php
