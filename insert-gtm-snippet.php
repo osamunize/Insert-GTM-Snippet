@@ -34,8 +34,7 @@ defined( 'ABSPATH' ) || exit;
     $opt_val = esc_js( get_option( $opt_name ));
 
 // ユーザーが何か情報を POST したかどうかを確認
-// POST していれば、隠しフィールドに 'Y' が設定されている
-    //if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+// nonceをチェック
     if ( ! empty( $_POST ) && check_admin_referer( 'insert_gtm_snippet_action','insert_gtm_snippet_nonce_field' ) ) {
         // POST されたデータを取得
         $opt_val = esc_attr($_POST[ $data_field_name ]);
