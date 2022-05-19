@@ -56,7 +56,7 @@ defined( 'ABSPATH' ) || exit;
     echo '<div class="wrap">';
     echo "<h2>" . __( 'Insert GTM Snippet', 'gtm_snippet_menu' ) . "</h2>";
     ?>
-    <form name="form1" method="post" action="">
+    <form name="insert-gtm-snippet-form" method="post" action="">
         <?php wp_nonce_field( 'insert_gtm_snippet_action', 'insert_gtm_snippet_nonce_field' ); ?>
         <input type="hidden" name="<?php echo esc_attr($hidden_field_name); ?>" value="Y">
         <p><?php esc_attr_e("GTM Container ID (GTM-XXXXXXX):", 'gtm_snippet_menu' ); ?> 
