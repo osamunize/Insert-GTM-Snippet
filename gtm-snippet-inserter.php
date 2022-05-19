@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
 // POST していれば、隠しフィールドに 'Y' が設定されている
     if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
         // POST されたデータを取得
-        $opt_val = $_POST[ $data_field_name ];
+        $opt_val = esc_attr($_POST[ $data_field_name ]);
         // 入力された値が不正の場合
         if ( $opt_val !== esc_attr($opt_val) || !preg_match('/GTM-[0-9A-Z]{7}$/',$opt_val) ){
         ?>
