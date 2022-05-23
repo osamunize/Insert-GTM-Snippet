@@ -1,4 +1,4 @@
-=== Insert GTM Snippet ===
+=== Insert GTM Snippet - Simple plugin to insert Google Tag Manager snippets ===
 Contributors: osamunize
 Tags: snippet, google, tag manager , gtm
 Requires at least: 5.9.3
@@ -12,7 +12,7 @@ This plugin inserts GTM snippets into the site.
 
 == Description ==
 
-This plugin inserts GTM snippets into the site.
+Very simple plugin to insert Google Tag Manager snippets. Easy, lightweight, and simple.
 
 == Changelog ==
 
